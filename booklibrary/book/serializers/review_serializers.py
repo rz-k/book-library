@@ -13,3 +13,8 @@ class OutPutReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reviews 
         fields = '__all__'
+
+class InputReviewDetailSerializer(serializers.Serializer):
+    rating = serializers.IntegerField(
+        validators = [rating_validator]
+    )
