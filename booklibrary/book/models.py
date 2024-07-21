@@ -4,9 +4,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-
-
-class Book(BaseModel):
+class Book(models.Model):
     title = models.CharField(
         max_length=200, 
         unique=True,
@@ -25,7 +23,7 @@ class Book(BaseModel):
     def __str__(self) -> str:
         return self.title[:30]
 
-class Reviews(BaseModel):
+class Reviews(models.Model):
 
     book = models.ForeignKey(
         to=Book,
