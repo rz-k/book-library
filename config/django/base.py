@@ -14,7 +14,8 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 # Application definition
 LOCAL_APPS = [
-    'booklibrary.core.apps.CoreConfig',
+    # 'booklibrary.core.apps.CoreConfig',
+    'booklibrary.book.apps.BookConfig',
     'booklibrary.common.apps.CommonConfig',
     'booklibrary.users.apps.UsersConfig',
     'booklibrary.authentication.apps.AuthenticationConfig',
