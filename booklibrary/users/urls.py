@@ -1,8 +1,10 @@
 from django.urls import path
-from .apis import ProfileApi, RegisterApi
+from booklibrary.users.apis.user_apis import (
+    RegisterApi
+)
 
 
+app_name="api"
 urlpatterns = [
     path('register/', RegisterApi.as_view(),name="register"),
-    path('profile/', ProfileApi.as_view(),name="profile"),
 ]

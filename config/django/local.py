@@ -1,5 +1,17 @@
 from .base import *  # noqa
 
-CELERY_BROKER_BACKEND = "memory"
-CELERY_TASK_ALWAYS_EAGER = True
-CELERY_TASK_EAGER_PROPAGATES = True
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
+MIDDLEWARE += [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+]
+
+INSTALLED_APPS += [
+    'debug_toolbar'
+]
+
+STATIC_URL = "static/"

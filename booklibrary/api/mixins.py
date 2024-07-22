@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib import auth
 
 from rest_framework.permissions import IsAuthenticated, BasePermission
-from rest_framework.authentication import BaseAuthentication
+from rest_framework.authentication import BaseAuthentication, SessionAuthentication
 
 from rest_framework_simplejwt.authentication import JWTAuthentication 
 
@@ -35,6 +35,6 @@ else:
 
 class ApiAuthMixin:
     authentication_classes: Sequence[Type[BaseAuthentication]] = [
-            JWTAuthentication,
+            JWTAuthentication, #SessionAuthentication
     ]
     permission_classes: PermissionClassesType = (IsAuthenticated, )
