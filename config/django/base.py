@@ -137,7 +137,9 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': []
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # "rest_framework.authentication.SessionAuthentication",
+    ]
 }
 
 APP_DOMAIN = env("APP_DOMAIN", default="http://localhost:8000")

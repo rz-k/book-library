@@ -31,4 +31,4 @@ class RegisterApi(APIView):
                     f"Database Error {ex}",
                     status=status.HTTP_400_BAD_REQUEST
                     )
-        return Response(OutPutRegisterSerializer(user, context={"request":request}).data)
+        return Response(OutPutRegisterSerializer(user, context={"request":request}).data, status=status.HTTP_201_CREATED)

@@ -25,7 +25,13 @@ class BookListApi(ApiAuthMixin, APIView, LimitOffsetPagination):
         filters_serializer.is_valid(raise_exception=True)
         
         query = BookService.book_list(filters=filters_serializer.validated_data)
+        from booklibrary.book.models import Reviews
+        user_reviews = Reviews.objects.filter(user=request.user)
+        context = {
+            'request': request,
+            'user_reviews': user_reviews
+        }
         pagination = self.paginate_queryset(query, self.request)               
-        serializer = OutPutBookSerializer(pagination, many=True, context={"request":request})
+        serializer = OutPutBookSerializer(pagination, many=True, context=context)
         response = self.get_paginated_data(serializer.data)
         return Response(response, status=status.HTTP_200_OK)

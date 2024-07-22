@@ -14,13 +14,13 @@ class OutPutBookSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_your_review(self, obj):
-        request = self.context.get('request')
-        if request and hasattr(request, "user"):
-            user_review = obj.book_reviews.filter(user=request.user).first()
+        user_reviews = self.context.get('user_reviews')
+        if user_reviews is not None:
+            user_review = next((review for review in user_reviews if review.book_id == obj.id), None)
             if user_review:
                 return BookReviewSerializer(user_review).data
         return None
-
+        
 class BookFilterSerializer(serializers.Serializer):
     genre = serializers.CharField(
         required=False, allow_null=True, default=None
